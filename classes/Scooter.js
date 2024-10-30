@@ -62,6 +62,7 @@ dock(station)
     this.station = station;
     console.log('Scooter is docked')
     }
+    return this;
 }
 
 }

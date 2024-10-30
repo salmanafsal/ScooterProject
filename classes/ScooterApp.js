@@ -66,13 +66,24 @@ class ScooterApp {
     if (!this.stations[station]) {
         throw new Error("No such station.");
     }
-    if (scooter.isDocked) {
-        throw new Error("Scooter already at station.");
+
+    for (const obj in this.stations)
+    {
+        for (const value of this.stations[obj])
+       { 
+        if(value === scooter)
+        {
+            throw new Error ("Scooter already at station.");
+ 
+        }
+        
+    }
     }
     this.stations[station].push(scooter); // Add to the stations list
     scooter.dock(station);
     /*console.log(`Scooter ${scooter.scooterId} is docked at ${stationName}.`);*/
 }
+  
 
 rentScooter(scooter, user) {
     
