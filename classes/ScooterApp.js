@@ -62,6 +62,69 @@ class ScooterApp {
 
   }
 
+  dockScooter(scooter, station) {
+    if (!this.stations[station]) {
+        throw new Error("No such station.");
+    }
+    if (scooter.isDocked) {
+        throw new Error("Scooter already at station.");
+    }
+    this.stations[station].push(scooter); // Add to the stations list
+    scooter.dock(station);
+    /*console.log(`Scooter ${scooter.scooterId} is docked at ${stationName}.`);*/
+}
+
+rentScooter(scooter, user) {
+    
+    for ( const obj in this.stations)
+    {
+        console.log(obj);
+       for (const value of this.stations[obj])
+       { 
+        if(value=== scooter)
+        {
+
+         const index = this.stations[obj].indexOf(value);   
+         console.log(index);
+         this.stations[obj].splice(index,1); /* remove scooter from the station */
+        break;
+        }
+        }
+    }   
+    if (!user) {
+        throw new Error("No such user.");
+    }
+    // Find the scooter in any station
+    
+            scooter.rent(user);
+        
+            return;
+        }
+    
+
+
+
+print() {
+   
+    for (const obj in this.registeredUsers)
+    {
+    console.log(obj) + "Users details";
+    }
+    for (const location in this.stations  )
+        {   let count=0;
+            console.log(location);
+        for (const value of this.stations[location])
+        {
+
+            count=count+1;
+        }    
+        console.log(`Total Count of scooters ${count} at location ${location}`);
+        
+        }
+
+
+}
+
 }
 
 module.exports = ScooterApp;

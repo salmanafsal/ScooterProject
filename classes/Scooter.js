@@ -14,17 +14,34 @@ constructor(station )
     this.serial= Scooter.nextSerial++;
     this.charge = 100;
     this.isBroken = false;
-    this.ScooterUser = null;
+    this.ScooterUser = [];
 }
 
 rent(user)
 {
-
-    if(this.charge>20 && this.isBroken!== false )
+    let check = 0;
+    if(this.charge>20 && this.isBroken!== true )
     {
+
+        for (let i=0;i<this.ScooterUser.length;i++)
+        {
+
+            if(this.ScooterUser[i]=== user)
+            {
+
+                console.log ('Scooter already rented');
+                check =1;
+            }
+
+
+        }
+        if(check ==0)
+        {
         this.ScooterUser.push(user);
+        console.log ('Scooter is rented');
+        }
     }
-    else if (this.charge>20 && this.isBroken!== true )
+    else if (this.charge>20 && this.isBroken!== false )
     {
 
         throw new Error ('scooter needs repair');
@@ -40,8 +57,10 @@ dock(station)
 {
     if(this.ScooterUser)
     {
+       
     this.ScooterUser.pop();
     this.station = station;
+    console.log('Scooter is docked')
     }
 }
 
